@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListView" x:Key="ListView">
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <!--Style för listview-->
+                <ControlTemplate TargetType="ListView">
+                    <Border BorderThickness="2" BorderBrush="AntiqueWhite" CornerRadius="6" Background="Black" Margin="20" HorizontalAlignment="Stretch">
+                        <ItemsPresenter></ItemsPresenter>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
+

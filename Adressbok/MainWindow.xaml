@@ -1,0 +1,130 @@
+﻿<Window x:Class="Adressbok.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Adressbok"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Adressbok" Height="450" Width="800">
+    <Grid Background="Black">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column = "0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="20">
+                <TextBlock Text="Förnamn" Style ="{StaticResource label}"/>
+                <TextBox x:Name="tb_FirstName" Style="{StaticResource field}"/>
+
+                <TextBlock Text="Efternamn" Style ="{StaticResource label}"/>
+                <TextBox x:Name="tb_LastName" Style="{StaticResource field}"/>
+
+                <TextBlock Text="E-post" Style ="{StaticResource label}"/>
+                <TextBox x:Name="tb_Email" Style="{StaticResource field}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="3*"/>
+
+
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Gatuadress" Style ="{StaticResource label}"/>
+                        <TextBox x:Name="tb_StreetName" Style="{StaticResource field}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="5 0">
+                        <TextBlock Text="Postnummer" Style ="{StaticResource label}"/>
+                        <TextBox x:Name="tb_PostalCode" Style="{StaticResource field}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Text="Ort" Style ="{StaticResource label}"/>
+                        <TextBox x:Name= "tb_City" Style="{StaticResource field}"/>
+
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+           
+            <!--Rad med 3 columner för ikoner längst ner-->
+            <StackPanel Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="8*"/>
+                        
+                        <ColumnDefinition Width="3*"/>
+
+
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                    <Button x:Name="btn_Back"
+                    Click="btn_Back_Click"  
+                    Content="Gå tillbaka"
+                    HorizontalAlignment = "Left"
+                    VerticalAlignment ="Center"
+                            Style="{StaticResource defaultButton}"/>
+
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Margin="0">
+                        <Button
+                            x:Name="btn_Add"
+                            Click="btn_Add_Click"
+                            HorizontalAlignment ="Right"
+                            Style="{StaticResource defaultButton}"
+                            Grid.Column="1"
+                            Content="Lägg till" />
+
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <Button
+                            x:Name="btn_Save"
+                            Click="btn_Save_Click"
+                            HorizontalAlignment ="Right"
+                            Style="{StaticResource defaultButton}"
+                            Grid.Column="1"
+                            Content="Spara" />
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <ListView x:Name="lv_Contacts" SelectionChanged="lv_Contacts_SelectionChanged" Grid.Column="1" Style="{StaticResource ListView}">
+            <!--lista i andra columnen-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding FullName}" 
+                                       FontSize="14"
+                                       Style="{StaticResource labelContact}"/>
+
+                            <TextBlock Text="{Binding Email}" 
+                                       FontSize="12"
+                                       Style="{StaticResource labelContact}"/>
+                            <!--skriver ut Fullname (för och efternamn) och email med style från labelContact-->
+                        </StackPanel>
+                        <Button
+                            x:Name="btn_Delete"
+                            Click="btn_Delete_Click"
+                            Style="{StaticResource IconButtons}"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Grid.Column="1"
+                            Content="&#xE74D;"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
